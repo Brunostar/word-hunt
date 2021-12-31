@@ -1,15 +1,15 @@
-import React from 'react'  
+import React from 'react'
 import './Definitions.css'
 
-const Definitions = ({ word, category, meanings }) => {
+const Definitions = ({ word, category, meanings, LightMode }) => {
   return (
     <div className='meanings'>
 
       {
         meanings[0] && word && category === 'en' && (
-          <audio 
-            src={meanings[0].phonetics[0] && meanings[0].phonetics[0].audio} 
-            style={{backgroundColor: '#fff', borderRadius: 10 }}
+          <audio
+            src={meanings[0].phonetics[0] && meanings[0].phonetics[0].audio}
+            style={{ backgroundColor: '#fff', borderRadius: 10 }}
             controls
           >
             Your Browser donesn't support audio elements.
@@ -23,12 +23,15 @@ const Definitions = ({ word, category, meanings }) => {
         meanings.map((mean) =>
           mean.meanings.map((item) => (
             item.definitions.map((def) => (
-              <div 
-                className='singleMean' 
-                style={{ backgroundColor: "white", color: "black" }}
+              <div
+                className='singleMean'
+                style={{
+                  backgroundColor: LightMode ? "#3b5360" : "white",
+                  color: LightMode ? "white" : "black",
+                }}
               >
                 <b>{def.definition}</b>
-                <hr style={{backgroundColor: "black", width: "100%"}} />
+                <hr style={{ backgroundColor: LightMode ? "#3b5360" : "black", width: "100%" }} />
                 {
                   def.example && (
                     <span>
@@ -40,7 +43,7 @@ const Definitions = ({ word, category, meanings }) => {
                 {def.synonyms && (
                   <span>
                     <b>Synonyms : </b>
-                    {def.synonyms.map((s)=>`${s},`)}
+                    {def.synonyms.map((s) => `${s},`)}
                   </span>
                 )}
               </div>

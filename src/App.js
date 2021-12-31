@@ -82,7 +82,7 @@ function App() {
         height: '100vh',
         backgroundColor: LightMode ? "#fff" : "#282c34",
         color: LightMode ? "black" : 'white',
-        transition: "all 0.5f linear"
+        transition: "all 0.5s linear"
       }}
 
     >
@@ -108,7 +108,12 @@ function App() {
         />
         {
           meanings && (
-            <Definitions word={word} meanings={meanings} category={category} />
+            <Definitions
+              word={word}
+              meanings={meanings}
+              category={category}
+              LightMode={LightMode}
+            />
           )
         }
       </Container>
