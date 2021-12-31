@@ -4,15 +4,20 @@ import React from 'react'
 import './Header.css'
 import categories from '../../data/category'
 
-const Header = ({setCategory, category, word, setWord}) => {
+const Header = ({setCategory, category, word, setWord, LightMode}) => {
   const darkTheme = createTheme({
     palette: {
       primary: {
-        main: '#fff'
+        main: LightMode? "#000" : '#fff'
       },
-      type: 'dark',
+      type:LightMode ? "light" : 'dark',
     },
   });
+
+  const handleChange = (language) => {
+    setCategory(language);
+    setWord('')
+  }
 
   return (
     <div className='header'>
@@ -31,7 +36,7 @@ const Header = ({setCategory, category, word, setWord}) => {
             select
             label="Language"
             value={category}
-            onChange={(e)=> setCategory(e.target.value)}
+            onChange={(e)=> handleChange(e.target.value)}
           >
             {categories.map((option) => (
               <MenuItem key={option.label} value={option.label}>
